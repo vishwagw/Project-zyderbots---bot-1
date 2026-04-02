@@ -16,3 +16,31 @@ Usage:
 Environment: copy .env.example to .env and fill in your API keys.
 Start with ALPACA_PAPER=true until you trust the system.
 """
+from __future__ import annotations
+import logging
+import time
+import signal
+import sys
+from datetime import datetime, timezone, time as dtime
+
+import schedule
+
+from config import config as cfg
+from data_layer import DataLayer
+from ai_brain import AIBrain
+from math_layer import MathLayer
+from execution_layer import ExecutionLayer
+from alerts import AlertSystem
+
+# ── Logging ───────────────────────────────────────────────────────────────────
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s  %(levelname)-8s  %(name)s — %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+    handlers=[
+        logging.StreamHandler(sys.stdout),
+        logging.FileHandler("bot.log", mode="a"),
+    ],
+)
+logger = logging.getLogger("main")
+
