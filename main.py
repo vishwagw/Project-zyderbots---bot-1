@@ -233,3 +233,10 @@ class TradingBot:
             time.sleep(5)
 
         logger.info("Bot stopped.")
+
+# ─────────────────────────────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    bot = TradingBot()
+    bot.run()
+
